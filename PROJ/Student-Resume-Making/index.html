@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Resume Making - Create Your Professional Resume</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">📄 Student Resume Making</div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#resume-builder" class="nav-link">Resume Builder</a></li>
+                <li><a href="#templates" class="nav-link">Templates</a></li>
+                <li><a href="#profiles" class="nav-link">Student Profiles</a></li>
+                <li><a href="#tips" class="nav-link">Resume Tips</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="nav-right">
+                <button class="dark-mode-toggle" id="darkModeBtn" title="Toggle Dark Mode">🌙</button>
+                <button class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Build Your Professional Resume</h1>
+            <p>Create a stunning resume in minutes and land your dream job. Trusted by thousands of students worldwide.</p>
+            <button class="cta-button" onclick="document.getElementById('resume-builder').scrollIntoView({behavior: 'smooth'})">
+                Create Resume Now
+            </button>
+        </div>
+        <div class="hero-image">
+            <div class="hero-illustration">
+                <div class="resume-card"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resume Builder Section -->
+    <section id="resume-builder" class="resume-builder-section">
+        <div class="section-container">
+            <h2>Resume Builder</h2>
+            <p class="section-subtitle">Fill in your information and get an instant preview</p>
+            
+            <div class="builder-wrapper">
+                <!-- Form Section -->
+                <div class="form-section">
+                    <form id="resumeForm" class="resume-form">
+                        <!-- Personal Information -->
+                        <div class="form-group">
+                            <label for="fullName">Full Name *</label>
+                            <input type="text" id="fullName" placeholder="John Doe" required>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email *</label>
+                                <input type="email" id="email" placeholder="john@example.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone *</label>
+                                <input type="tel" id="phone" placeholder="+1 (555) 123-4567" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="profilePhoto">Profile Photo</label>
+                            <input type="file" id="profilePhoto" accept="image/*">
+                            <small>Upload a professional photo (optional)</small>
+                        </div>
+
+                        <!-- Education -->
+                        <fieldset class="form-fieldset">
+                            <legend>Education</legend>
+                            <div class="form-group">
+                                <label for="university">University/College *</label>
+                                <input type="text" id="university" placeholder="XYZ University" required>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="degree">Degree *</label>
+                                    <input type="text" id="degree" placeholder="Bachelor of Science" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="field">Field of Study *</label>
+                                    <input type="text" id="field" placeholder="Computer Science" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="graduationYear">Graduation Year *</label>
+                                    <input type="number" id="graduationYear" placeholder="2025" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="gpa">GPA</label>
+                                    <input type="number" id="gpa" placeholder="3.8" min="0" max="4" step="0.01">
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <!-- Skills -->
+                        <fieldset class="form-fieldset">
+                            <legend>Skills (comma separated)</legend>
+                            <div class="form-group">
+                                <label for="skills">Your Skills *</label>
+                                <textarea id="skills" placeholder="JavaScript, Python, HTML, CSS, React, SQL..." required></textarea>
+                            </div>
+                        </fieldset>
+
+                        <!-- Experience -->
+                        <fieldset class="form-fieldset">
+                            <legend>Experience</legend>
+                            <div class="form-group">
+                                <label for="jobTitle">Job Title</label>
+                                <input type="text" id="jobTitle" placeholder="Intern / Junior Developer">
+                            </div>
+                            <div class="form-group">
+                                <label for="company">Company</label>
+                                <input type="text" id="company" placeholder="Tech Company Inc.">
+                            </div>
+                            <div class="form-group">
+                                <label for="jobDescription">Job Description</label>
+                                <textarea id="jobDescription" placeholder="Describe your responsibilities and achievements..."></textarea>
+                            </div>
+                        </fieldset>
+
+                        <!-- Projects -->
+                        <fieldset class="form-fieldset">
+                            <legend>Projects</legend>
+                            <div class="form-group">
+                                <label for="projectName">Project Name</label>
+                                <input type="text" id="projectName" placeholder="My Awesome Project">
+                            </div>
+                            <div class="form-group">
+                                <label for="projectDescription">Project Description</label>
+                                <textarea id="projectDescription" placeholder="Describe your project and technologies used..."></textarea>
+                            </div>
+                        </fieldset>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">Update Preview</button>
+                            <button type="button" class="btn btn-secondary" onclick="downloadResumePDF()">Download as PDF</button>
+                            <button type="reset" class="btn btn-outline">Clear Form</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Preview Section -->
+                <div class="preview-section">
+                    <div id="resumePreview" class="resume-preview">
+                        <div class="resume-header">
+                            <div class="resume-header-content">
+                                <div class="resume-photo-container">
+                                    <img id="previewPhoto" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='30' r='20' fill='%23ddd'/%3E%3Cellipse cx='50' cy='70' rx='30' ry='35' fill='%23ddd'/%3E%3C/svg%3E" alt="Profile Photo">
+                                </div>
+                                <div>
+                                    <h1 id="previewName">Your Name</h1>
+                                    <p id="previewEmail" class="preview-contact">email@example.com</p>
+                                    <p id="previewPhone" class="preview-contact">+1 (555) 123-4567</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="resume-section">
+                            <h3>Education</h3>
+                            <div id="previewEducation">
+                                <p><strong>XYZ University</strong></p>
+                                <p>Bachelor of Science in Computer Science</p>
+                                <p class="small-text">Expected Graduation: 2025</p>
+                            </div>
+                        </div>
+
+                        <div class="resume-section">
+                            <h3>Skills</h3>
+                            <div id="previewSkills" class="skills-tags">
+                                <span class="skill-tag">Skill 1</span>
+                                <span class="skill-tag">Skill 2</span>
+                            </div>
+                        </div>
+
+                        <div class="resume-section" id="experienceSection" style="display:none;">
+                            <h3>Experience</h3>
+                            <div id="previewExperience">
+                                <p><strong>Job Title</strong> - Company Name</p>
+                                <p>Job description goes here.</p>
+                            </div>
+                        </div>
+
+                        <div class="resume-section" id="projectSection" style="display:none;">
+                            <h3>Projects</h3>
+                            <div id="previewProject">
+                                <p><strong>Project Name</strong></p>
+                                <p>Project description goes here.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Templates Section -->
+    <section id="templates" class="templates-section">
+        <div class="section-container">
+            <h2>Resume Templates</h2>
+            <p class="section-subtitle">Choose a template that matches your style</p>
+            
+            <div class="templates-grid">
+                <!-- Template 1 -->
+                <div class="template-card">
+                    <div class="template-preview template-1">
+                        <div style="padding: 10px; font-weight: bold; border-bottom: 2px solid #3498db;">John Doe</div>
+                        <div style="padding: 10px; font-size: 12px;">
+                            <p style="margin: 5px 0;"><strong>EDUCATION</strong></p>
+                            <p style="margin: 5px 0; font-size: 11px;">XYZ University - BS Computer Science</p>
+                            <p style="margin: 5px 0;"><strong>SKILLS</strong></p>
+                            <p style="margin: 5px 0; font-size: 11px;">JavaScript, Python, React, SQL</p>
+                        </div>
+                    </div>
+                    <h3>Modern Blue</h3>
+                    <p>Clean and professional with blue accents</p>
+                    <button class="btn btn-secondary" onclick="selectTemplate('template-1')">Use Template</button>
+                </div>
+
+                <!-- Template 2 -->
+                <div class="template-card">
+                    <div class="template-preview template-2">
+                        <div style="background: #2c3e50; color: white; padding: 10px; border-left: 4px solid #e74c3c;">
+                            <div style="font-weight: bold; font-size: 14px;">JOHN DOE</div>
+                            <div style="font-size: 11px; margin-top: 8px;">john@example.com | +1 (555) 123-4567</div>
+                        </div>
+                        <div style="padding: 10px; font-size: 11px;">
+                            <p style="margin: 5px 0;"><strong style="color: #e74c3c;">▪ EXPERIENCE</strong></p>
+                            <p style="margin: 3px 0;">Senior Developer at Tech Co.</p>
+                            <p style="margin: 5px 0;"><strong style="color: #e74c3c;">▪ SKILLS</strong></p>
+                            <p style="margin: 3px 0;">Full Stack Development, Leadership</p>
+                        </div>
+                    </div>
+                    <h3>Dark Professional</h3>
+                    <p>Modern design with dark header and red accents</p>
+                    <button class="btn btn-secondary" onclick="selectTemplate('template-2')">Use Template</button>
+                </div>
+
+                <!-- Template 3 -->
+                <div class="template-card">
+                    <div class="template-preview template-3">
+                        <div style="text-align: center; padding: 8px; border-bottom: 3px dotted #9b59b6;">
+                            <div style="font-weight: bold; font-size: 13px;">JOHN DOE</div>
+                            <div style="font-size: 10px; color: #7f8c8d;">Full Stack Developer</div>
+                        </div>
+                        <div style="padding: 8px; font-size: 11px;">
+                            <div style="margin: 5px 0; padding-bottom: 5px; border-bottom: 1px solid #ecf0f1;">
+                                <strong>ACHIEVEMENT:</strong> Led team project
+                            </div>
+                            <div style="margin: 5px 0;">
+                                <strong>TECH STACK:</strong> JS, Python, React
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Creative Purple</h3>
+                    <p>Unique design perfect for creative professionals</p>
+                    <button class="btn btn-secondary" onclick="selectTemplate('template-3')">Use Template</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Student Profiles Section -->
+    <section id="profiles" class="profiles-section">
+        <div class="section-container">
+            <h2>Student Profiles</h2>
+            <p class="section-subtitle">Success stories from our community</p>
+            
+            <div class="profiles-grid">
+                <!-- Profile 1 -->
+                <div class="profile-card">
+                    <div class="profile-image">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='35' r='20' fill='%233498db'/%3E%3Cellipse cx='50' cy='75' rx='30' ry='35' fill='%233498db'/%3E%3C/svg%3E" alt="Student Profile">
+                    </div>
+                    <h3>Alex Johnson</h3>
+                    <p class="profile-role">Web Developer</p>
+                    <div class="profile-skills">
+                        <span class="skill-badge">React</span>
+                        <span class="skill-badge">Node.js</span>
+                        <span class="skill-badge">MongoDB</span>
+                    </div>
+                    <p class="profile-bio">Computer Science graduate who landed a job at a top tech company using the resume builder.</p>
+                </div>
+
+                <!-- Profile 2 -->
+                <div class="profile-card">
+                    <div class="profile-image">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='35' r='20' fill='%2327ae60'/%3E%3Cellipse cx='50' cy='75' rx='30' ry='35' fill='%2327ae60'/%3E%3C/svg%3E" alt="Student Profile">
+                    </div>
+                    <h3>Sarah Williams</h3>
+                    <p class="profile-role">Data Scientist</p>
+                    <div class="profile-skills">
+                        <span class="skill-badge">Python</span>
+                        <span class="skill-badge">Machine Learning</span>
+                        <span class="skill-badge">SQL</span>
+                    </div>
+                    <p class="profile-bio">Finance student turned data analyst. Created an impressive resume that impressed recruiters.</p>
+                </div>
+
+                <!-- Profile 3 -->
+                <div class="profile-card">
+                    <div class="profile-image">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='35' r='20' fill='%23e74c3c'/%3E%3Cellipse cx='50' cy='75' rx='30' ry='35' fill='%23e74c3c'/%3E%3C/svg%3E" alt="Student Profile">
+                    </div>
+                    <h3>Michael Chen</h3>
+                    <p class="profile-role">UI/UX Designer</p>
+                    <div class="profile-skills">
+                        <span class="skill-badge">Figma</span>
+                        <span class="skill-badge">Design</span>
+                        <span class="skill-badge">Prototyping</span>
+                    </div>
+                    <p class="profile-bio">Design student showcased portfolio and projects. Got multiple job offers in 2 weeks.</p>
+                </div>
+
+                <!-- Profile 4 -->
+                <div class="profile-card">
+                    <div class="profile-image">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='35' r='20' fill='%23f39c12'/%3E%3Cellipse cx='50' cy='75' rx='30' ry='35' fill='%23f39c12'/%3E%3C/svg%3E" alt="Student Profile">
+                    </div>
+                    <h3>Emma Davis</h3>
+                    <p class="profile-role">Full Stack Developer</p>
+                    <div class="profile-skills">
+                        <span class="skill-badge">JavaScript</span>
+                        <span class="skill-badge">React</span>
+                        <span class="skill-badge">DevOps</span>
+                    </div>
+                    <p class="profile-bio">Boot camp graduate who used our templates to create a professional resume in 30 minutes.</p>
+                </div>
+
+                <!-- Profile 5 -->
+                <div class="profile-card">
+                    <div class="profile-image">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='35' r='20' fill='%239b59b6'/%3E%3Cellipse cx='50' cy='75' rx='30' ry='35' fill='%239b59b6'/%3E%3C/svg%3E" alt="Student Profile">
+                    </div>
+                    <h3>David Kumar</h3>
+                    <p class="profile-role">Backend Engineer</p>
+                    <div class="profile-skills">
+                        <span class="skill-badge">Java</span>
+                        <span class="skill-badge">AWS</span>
+                        <span class="skill-badge">Kubernetes</span>
+                    </div>
+                    <p class="profile-bio">Internship turned into job offer. The resume builder helped highlight key achievements.</p>
+                </div>
+
+                <!-- Profile 6 -->
+                <div class="profile-card">
+                    <div class="profile-image">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='35' r='20' fill='%231abc9c'/%3E%3Cellipse cx='50' cy='75' rx='30' ry='35' fill='%231abc9c'/%3E%3C/svg%3E" alt="Student Profile">
+                    </div>
+                    <h3>Lisa Anderson</h3>
+                    <p class="profile-role">Mobile Developer</p>
+                    <div class="profile-skills">
+                        <span class="skill-badge">Flutter</span>
+                        <span class="skill-badge">iOS</span>
+                        <span class="skill-badge">Android</span>
+                    </div>
+                    <p class="profile-bio">Mobile app developer who created a stunning resume with our builder and landed dream job.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resume Tips Section -->
+    <section id="tips" class="tips-section">
+        <div class="section-container">
+            <h2>Resume Tips & Tricks</h2>
+            <p class="section-subtitle">Expert advice to make your resume stand out</p>
+            
+            <div class="tips-content">
+                <!-- Tips Column 1 -->
+                <div class="tips-column">
+                    <h3>✅ Do's - What to Include</h3>
+                    
+                    <div class="tip-card">
+                        <h4>📌 Keep It Concise</h4>
+                        <p>Your resume should be one page for students. Save the detailed stories for interviews. Focus on relevant information only.</p>
+                    </div>
+
+                    <div class="tip-card">
+                        <h4>🎯 Use Strong Action Verbs</h4>
+                        <p>Start bullet points with verbs like "Developed," "Created," "Led," "Implementing" instead of passive language. This makes your achievements stand out.</p>
+                    </div>
+
+                    <div class="tip-card">
+                        <h4>📊 Quantify Your Achievements</h4>
+                        <p>Numbers speak louder than words. Instead of "improved performance," say "improved performance by 40%" or "managed 5+ projects."</p>
+                    </div>
+
+                    <div class="tip-card">
+                        <h4>🎓 Highlight Relevant Skills</h4>
+                        <p>Tailor your skills section to the job you're applying for. Include technical skills, programming languages, and soft skills relevant to the position.</p>
+                    </div>
+
+                    <div class="tip-card">
+                        <h4>💼 Include Real Experience</h4>
+                        <p>Add internships, freelance work, class projects, and volunteer work. Even academic projects demonstrate practical skills.</p>
+                    </div>
+                </div>
+
+                <!-- Tips Column 2 -->
+                <div class="tips-column">
+                    <h3>❌ Don'ts - What to Avoid</h3>
+                    
+                    <div class="tip-card avoid">
+                        <h4>🚫 Spelling & Grammar Mistakes</h4>
+                        <p>Proofread multiple times! Spelling and grammar errors make you look careless. Use tools like Grammarly or ask a friend to review.</p>
+                    </div>
+
+                    <div class="tip-card avoid">
+                        <h4>🚫 Personal Information Overload</h4>
+                        <p>Don't include age, photo, marital status, or personal interests unless specific to the job. Focus on professional qualifications.</p>
+                    </div>
+
+                    <div class="tip-card avoid">
+                        <h4>🚫 Vague Descriptions</h4>
+                        <p>Avoid generic phrases like "responsible for" or "worked on." Be specific about what you did and its impact.</p>
+                    </div>
+
+                    <div class="tip-card avoid">
+                        <h4>🚫 Too Much Information</h4>
+                        <p>Don't include high school experience if you're in college, or list every small project. Keep it relevant and recent.</p>
+                    </div>
+
+                    <div class="tip-card avoid">
+                        <h4>🚫 Unprofessional Email Address</h4>
+                        <p>Use a professional email like firstname.lastname@email.com, not something like "partydude@email.com" or "coder123@email.com."</p>
+                    </div>
+
+                    <div class="tip-card avoid">
+                        <h4>🚫 Inconsistent Formatting</h4>
+                        <p>Keep fonts, spacing, and bullet styles consistent throughout. A messy resume is hard to read and looks unprofessional.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Checklist -->
+            <div class="checklist-section">
+                <h3>📋 Pre-Submission Checklist</h3>
+                <div class="checklist">
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check1">
+                        <label for="check1">Proofread for spelling and grammar errors</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check2">
+                        <label for="check2">Verified all contact information is correct</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check3">
+                        <label for="check3">Formatted consistently (fonts, spacing, bullets)</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check4">
+                        <label for="check4">Included relevant keywords for the job</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check5">
+                        <label for="check5">Highlighted measurable achievements</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check6">
+                        <label for="check6">Resume is one page length</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="section-container">
+            <h2>Get In Touch</h2>
+            <p class="section-subtitle">Have questions? We'd love to hear from you!</p>
+            
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <div class="info-card">
+                        <h3>📧 Email</h3>
+                        <p>support@studentresume.com</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>📱 Phone</h3>
+                        <p>+1 (800) RESUME-1</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>📍 Address</h3>
+                        <p>Tech Hub, Silicon Valley<br>California, USA</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>🕐 Business Hours</h3>
+                        <p>Mon-Fri: 9:00 AM - 6:00 PM<br>Sat: 10:00 AM - 4:00 PM</p>
+                    </div>
+                </div>
+
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="contactName">Full Name *</label>
+                        <input type="text" id="contactName" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactEmail">Email *</label>
+                        <input type="email" id="contactEmail" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactSubject">Subject *</label>
+                        <input type="text" id="contactSubject" name="subject" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactMessage">Message *</label>
+                        <textarea id="contactMessage" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>About Us</h4>
+                <p>Student Resume Making helps students create professional resumes that land interviews and jobs.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#resume-builder">Builder</a></li>
+                    <li><a href="#templates">Templates</a></li>
+                    <li><a href="#tips">Tips</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Follow Us</h4>
+                <div class="social-links">
+                    <a href="#" class="social-link">Twitter</a>
+                    <a href="#" class="social-link">LinkedIn</a>
+                    <a href="#" class="social-link">Facebook</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Student Resume Making. All rights reserved. Made with ❤️ for Students.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
